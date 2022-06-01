@@ -18,10 +18,23 @@ int main(int /*argc*/, char ** /*argv*/)
     // Obtiene el archivo que fue enviado mendiante el formulario.
     const_file_iterator file = cgi.getFile(".pdf");
 
+    form_iterator name      = cgi.getElement("name");
+    form_iterator author    = cgi.getElement("author");
+    form_iterator topic     = cgi.getElement("topic");
+
+    std::ofstream saveData("./data.csv", std::ios::app);
+    saveData << name->getValue()    << "," 
+             << author->getValue()  << "," 
+             << topic->getValue()   << ","
+             << file->getFilename()     << "\n";
+    saveData.close();
+    
     //Creo un archivo con el nombre del mismo...
     std::ofstream saveFile("./uploaded_files/" + file->getFilename());
     file->writeToStream(saveFile);
     saveFile.close();    
+    
+    std::cout << "Su archivo se subio exitosamente" << std::endl;
  
-     return EXIT_SUCCESS;
- }
+    return 0;
+}
