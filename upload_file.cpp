@@ -26,7 +26,7 @@ int main(int /*argc*/, char ** /*argv*/)
     saveData << name->getValue()    << "," 
              << author->getValue()  << "," 
              << topic->getValue()   << ","
-             << file->getFilename()     << "\n";
+             << file->getFilename() << "\n";
     saveData.close();
     
     //Creo un archivo con el nombre del mismo...
