@@ -6,6 +6,8 @@
  #include "cgicc/HTTPHTMLHeader.h"
  #include "cgicc/HTMLClasses.h"
 
+ #include "./uuid.hpp"
+
 using namespace cgicc;
 
 int main(int /*argc*/, char ** /*argv*/)
@@ -22,15 +24,21 @@ int main(int /*argc*/, char ** /*argv*/)
     form_iterator author    = cgi.getElement("author");
     form_iterator topic     = cgi.getElement("topic");
 
+    std::string uniqueID = uuid::generate_uuid_v4();
+
     std::ofstream saveData("./data.csv", std::ios::app);
     saveData << name->getValue()    << "," 
              << author->getValue()  << "," 
              << topic->getValue()   << ","
+<<<<<<< HEAD
              << file->getFilename() << "\n";
+=======
+             << uniqueID            << "\n";
+>>>>>>> 7855a71 (adding the uuid function)
     saveData.close();
     
     //Creo un archivo con el nombre del mismo...
-    std::ofstream saveFile("./uploaded_files/" + file->getFilename());
+    std::ofstream saveFile("./uploaded_files/" + uniqueID);
     file->writeToStream(saveFile);
     saveFile.close();    
     
