@@ -30,11 +30,9 @@ int main(int /*argc*/, char ** /*argv*/)
     saveData << name->getValue()    << "," 
              << author->getValue()  << "," 
              << topic->getValue()   << ","
-<<<<<<< HEAD
              << file->getFilename() << "\n";
-=======
              << uniqueID            << "\n";
->>>>>>> 7855a71 (adding the uuid function)
+
     saveData.close();
     
     //Creo un archivo con el nombre del mismo...
